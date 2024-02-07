@@ -88,6 +88,23 @@ class Arena():
         y=self.car.body.pos.y+(
             self.car.speed*speedMultiplier*(((self.car.body.axis.x))/(self.car.width)*self.car.rotationAngle))
 
+        denominator=leftPos.x-rightPos.x
+        numerator=leftPos.y-rightPos.y
+        #Q1
+        if numerator>0 and denominator<0:
+            k=numerator*pow(denominator,-1)
+        #Q2
+        elif numerator>0 and denominator>0:
+            k=(leftPos.y-rightPos.y)/denominator
+        #Q3
+        elif numerator<0 and denominator>0:
+            k=(leftPos.y-rightPos.y)/(leftPos.x-rightPos.x)
+        #Q4
+        elif numerator<0 and denominator<0:
+            k=numerator/(leftPos.x-rightPos.x)
+        else:
+            k=0
+        
         #Hitbox front left and right corner
         rightPos=vec(
             (x-(self.car.body[0].axis.y))+self.car.body[0].width*(1.5*(self.car.body[0].axis.x/1500)),
