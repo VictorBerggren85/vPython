@@ -88,6 +88,16 @@ class Arena():
         y=self.car.body.pos.y+(
             self.car.speed*speedMultiplier*(((self.car.body.axis.x))/(self.car.width)*self.car.rotationAngle))
 
+        #Hitbox front left and right corner
+        rightPos=vec(
+            (x-(self.car.body[0].axis.y))+self.car.body[0].width*(1.5*(self.car.body[0].axis.x/1500)),
+            (y+self.car.body[0].axis.x)+(self.car.body[0].width*1.5)*(self.car.body[0].axis.y/1500),
+            self.car.height)
+        leftPos=vec(
+            (x-(self.car.body[0].axis.y))-self.car.body[0].width*(1.5*(self.car.body[0].axis.x/1500)),
+            (y+self.car.body[0].axis.x)-(self.car.body[0].width*1.5)*(self.car.body[0].axis.y/1500),
+            self.car.height)
+        
         testedX,testedY=self.checkCollisionWall(self.car,x,y)
         self.car.move(dir,testedX,testedY)
 
